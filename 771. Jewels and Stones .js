@@ -23,6 +23,7 @@ The characters in J are distinct.
  * @param {string} S
  * @return {number}
  */
+
 var numJewelsInStones = function(J, S) {
   var targetArr = S.split('')
   var arr = J.split('')
@@ -34,6 +35,20 @@ var numJewelsInStones = function(J, S) {
       }
     }
   }
+  return count
+};
+
+//more fast code below
+
+var numJewelsInStones = function(J, S) {
+  let jArr = J.split('')
+  let sArr = S.split('')
+  let count = 0;
+  sArr.forEach((e) => {
+    if (jArr.includes(e)) {
+      count++
+    }
+  })
   return count
 };
 
