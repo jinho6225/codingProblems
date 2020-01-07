@@ -42,11 +42,10 @@ var groupThePeople = function(groupSizes) {
         let array = [];
         for (let i = 0; i <= obj[key].length; i++) {
             if (array.length < key) {
-            array.push(obj[key][i])
+                array.push(obj[key][i])
             } else {
-            newArr.push(array)
-            array = [];
-            i--;
+                newArr.push(array)
+                array = [obj[key][i]];
             }
         }
         } else {
