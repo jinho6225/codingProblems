@@ -23,7 +23,7 @@ groupSizes.length == n
 1 <= groupSizes[i] <= n
 */
 
-/**
+/*
  * @param {number[]} groupSizes
  * @return {number[][]}
  */
