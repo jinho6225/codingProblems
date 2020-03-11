@@ -43,3 +43,5 @@ var reverseOnlyLetters = function(str) {
   }
   return array.join('')
 }
+
+reverseOnlyLetters("ab-cd")
