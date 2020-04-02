@@ -23,7 +23,6 @@ Constraints:
 0 <= nums[i] <= 100
 */
 
-
 /**
  * @param {number[]} nums
  * @return {number[]}
@@ -43,3 +42,4 @@ var smallerNumbersThanCurrent = function(nums) {
   return newArr
 };
 smallerNumbersThanCurrent([8,1,2,2,3])
+
