@@ -17,15 +17,36 @@ Minimize the total number of operations.
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 
+//this is faster code below
+//Runtime: 60 ms, faster than 84.19% of JavaScript online submissions for Move Zeroes.
 var moveZeroes = function (nums) {
-  const store = [];
-  while (nums.includes(0)) {
-    const index = nums.indexOf(0);
-    store.push(nums[index]);
-    nums.splice(index, 1);
+  if (!nums.includes(0)) {
+    return nums;
   }
-  while (store.length !== 0) {
-    nums.push(store.pop());
+  let total = 0;
+  for (let i = 0; i < nums.length; i++) {
+    if (nums[i] === 0) {
+      total += 1;
+    }
+  }
+  while (total !== 0) {
+    let index = nums.indexOf(0);
+    nums.splice(index, 1);
+    nums.push(0);
+    total--;
   }
   return nums;
 };
+
+// var moveZeroes = function (nums) {
+//   const store = [];
+//   while (nums.includes(0)) {
+//     const index = nums.indexOf(0);
+//     store.push(nums[index]);
+//     nums.splice(index, 1);
+//   }
+//   while (store.length !== 0) {
+//     nums.push(store.pop());
+//   }
+//   return nums;
+// };
