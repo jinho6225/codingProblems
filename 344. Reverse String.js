@@ -16,16 +16,16 @@ Output: ["h","a","n","n","a","H"]
 */
 
 /**
- * @param {character[]} s
+ * @param {character[]}
  * @return {void} Do not return anything, modify s in-place instead.
  */
-var reverseString = function(s) {
-  let last = s.length-1
+var reverseString = function (s) {
+  let last = s.length - 1;
   for (let i = 0; i < last; i++) {
     let storage = s[i];
-    s[i] = s[last]
-    s[last] = storage
-    last--
+    s[i] = s[last];
+    s[last] = storage;
+    last--;
   }
-  return s
+  return s;
 };
