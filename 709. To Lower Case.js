@@ -18,6 +18,8 @@ Output: "lovely"
  * @param {string} str
  * @return {string}
  */
+//Runtime: 44 ms, faster than 95.77% of JavaScript online submissions for To Lower Case.
+
 var toLowerCase = function (str) {
   let strArr = str.split('');
   for (let i = 0; i < strArr.length; i++) {
