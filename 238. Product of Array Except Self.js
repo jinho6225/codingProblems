@@ -18,6 +18,41 @@ Could you solve it with constant space complexity? (The output array does not co
  * @param {number[]} nums
  * @return {number[]}
  */
+
+//Runtime: 72 ms, faster than 96.29% of JavaScript online submissions for Product of Array Except Self.
+var productExceptSelf = function (nums) {
+  const sum = (arr) => {
+    if (arr.length === 1) {
+      return arr[0];
+    }
+    return arr[0] * sum(arr.slice(1));
+  };
+  if (nums.includes(0)) {
+    let idx = nums.indexOf(0);
+    let newNums = nums.slice();
+    newNums.splice(idx, 1);
+    for (let i = 0; i < nums.length; i++) {
+      if (nums[i] === 0) {
+        nums[i] = sum(newNums);
+      } else {
+        nums[i] = 0;
+      }
+    }
+  }
+  let total = 1;
+  for (let i = 0; i < nums.length; i++) {
+    total = total * nums[i];
+  }
+  if (total === 0) {
+    return nums;
+  }
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] = total / nums[i];
+  }
+  return nums;
+};
+
+// Runtime: 2564 ms, faster than 12.93% of JavaScript online submissions for Product of Array Except Self.
 var productExceptSelf = function (nums) {
   let arr = [];
   for (let i = 0; i < nums.length; i++) {
