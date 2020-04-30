@@ -37,7 +37,6 @@ Note: The merging process must start from the root nodes of both trees.
  */
 
 var mergeTrees = function (t1, t2) {
-  debugger;
   if (!t1 && !t2) {
     t1 = null;
     return t1;
