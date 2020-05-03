@@ -25,7 +25,6 @@ What if elements of nums2 are stored on disk, and the memory is limited such tha
  * @return {number[]}
  */
 var intersect = function(nums1, nums2) {
-  debugger;
     let result = []
     let newArr = nums2.slice()
     for (let i = 0; i < nums2.length; i++) {
