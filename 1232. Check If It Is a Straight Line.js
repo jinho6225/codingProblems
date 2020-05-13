@@ -20,6 +20,35 @@ coordinates contains no duplicate point.
  * @param {number[][]} coordinates
  * @return {boolean}
  */
+
+//shorter code - better than before
+var checkStraightLine = function (coordinates) {
+  coordinates.sort((a, b) => a[0] - b[0]);
+  let horizon = coordinates.map((coord) => coord[0]);
+  let vertical = coordinates.map((coord) => coord[1]);
+  let horiz = Array.from(new Set(horizon));
+  let vertic = Array.from(new Set(vertical));
+  if (horiz.length === 1 && vertic.length === 1) {
+    return false;
+  } else if (horiz.length === 1) {
+    return true;
+  } else if (vertic.length === 1) {
+    return true;
+  }
+  let result = [];
+  for (let i = 0; i < horizon.length - 1; i++) {
+    let hori = horizon[i + 1] - horizon[i];
+    let verti = vertical[i + 1] - vertical[i];
+    result.push(hori / verti);
+  }
+  result = Array.from(new Set(result));
+  if (result.length > 1) {
+    return false;
+  } else {
+    return true;
+  }
+};
+
 var checkStraightLine = function (coordinates) {
   let xIncrease = [];
   let yIncrease = [];
