@@ -40,6 +40,30 @@ trust[i][0] != trust[i][1]
  * @param {number[][]} trust
  * @return {number}
  */
+//more shorter code and readable code below
+var findJudge = function (N, trust) {
+  if (trust.length === 0) return N;
+  let arr = trust.map((array) => array[0]);
+  let uniqueArr = Array.from(new Set(arr));
+  let judge;
+  for (let i = 1; i <= N; i++) {
+    if (!uniqueArr.includes(i)) {
+      judge = i;
+    }
+  }
+  if (judge === undefined) return -1;
+  let count = uniqueArr.length;
+  for (let i = 0; i < trust.length; i++) {
+    if (uniqueArr.includes(trust[i][0])) {
+      if (trust[i][1] === judge) {
+        count--;
+        if (count === 0) return judge;
+      }
+    }
+  }
+  return -1;
+};
+
 var findJudge = function (N, trust) {
   let arr = [];
   for (let i = 0; i < trust.length; i++) {
