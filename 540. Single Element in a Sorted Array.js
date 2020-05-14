@@ -16,6 +16,8 @@ Note: Your solution should run in O(log n) time and O(1) space.
  * @param {number[]} nums
  * @return {number}
  */
+
+// O(n) - need to be O(log n)
 var singleNonDuplicate = function (nums) {
   //exactly twice, we could increase by 2
   for (let i = 0; i < nums.length; i = i + 2) {
