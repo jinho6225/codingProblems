@@ -32,7 +32,6 @@ var isPalindrome = function (head) {
     arr.push(head.val);
     head = head.next;
   }
-  debugger;
   if (arr.length === 1) return true;
   if (arr.length === 2) {
     if (arr[0] === arr[1]) return true;
