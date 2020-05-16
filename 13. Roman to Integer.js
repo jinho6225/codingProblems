@@ -54,19 +54,13 @@ var romanToInt = function (s) {
     M: 1000,
   };
   let arr = s.split('');
-  let newArr = [];
-  for (let i = 0; i < arr.length; i++) {
-    if (Object.hasOwnProperty.call(map, arr[i])) {
-      newArr.push(map[arr[i]]);
-    }
-  }
   let total = 0;
-  for (let i = 0; i < newArr.length; i++) {
-    if (newArr[i] < newArr[i + 1]) {
-      total += newArr[i + 1] - newArr[i];
+  for (let i = 0; i < arr.length; i++) {
+    if (map[arr[i]] < map[arr[i + 1]]) {
+      total += map[arr[i + 1]] - map[arr[i]];
       i++;
     } else {
-      total += newArr[i];
+      total += map[arr[i]];
     }
   }
   return total;
