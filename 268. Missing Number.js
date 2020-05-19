@@ -17,6 +17,8 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
  * @param {number[]} nums
  * @return {number}
  */
+
+//super slow...
 var missingNumber = function (nums) {
   nums = nums.sort((a, b) => a - b);
   for (let i = 0; i < nums.length; i++) {
