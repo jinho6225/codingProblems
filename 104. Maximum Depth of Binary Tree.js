@@ -1,3 +1,25 @@
+//5/19/20 solve this problem again
+//using depthFirstSearch
+
+var maxDepth = function (root) {
+  let max = 0;
+  if (!root) return max;
+  function depthF(root, count = 0) {
+    count++;
+    if (count > max) {
+      max = count;
+    }
+    if (root.left) {
+      depthF(root.left, count);
+    }
+    if (root.right) {
+      depthF(root.right, count);
+    }
+    return max;
+  }
+  return depthF(root);
+};
+
 /*
 104. Maximum Depth of Binary Tree
 
