@@ -42,3 +42,16 @@ var climbStairs = function (n) {
     }
   })(n);
 };
+
+//5/18/2020 solution
+var climbStairs = function (n) {
+  let arr = [1, 2];
+  if (2 >= n) {
+    return arr[n - 1];
+  } else {
+    for (let i = 2; i < n; i++) {
+      arr.push(arr[i - 2] + arr[i - 1]);
+    }
+  }
+  return arr[arr.length - 1];
+};
