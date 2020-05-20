@@ -15,11 +15,63 @@ Explanation:
 1^2 + 0^2 + 0^2 = 1
 */
 
+/**
+ * @param {number} n
+ * @return {boolean}
+ */
+
+/*
+we will have type number positivie integer
+need to convert string and array
+need to defind total variable as 0 first
+using for loop
+it will be sum(as exponential?? using ** and itself) with total
+and it will repeat again again again
+will make helper function and will use recursion
+recursion need
+base case
+if total equal 1
+    return true
+else what condition??
+i tested it until 9
+it's not possible i think except 1
+let me make map and save it and check up
+memoization?! whenever checkup
+recursive case
+*/
+var isHappy = function (n) {
+  n = n.toString();
+  let map = {};
+  let arr;
+  let total = 0;
+  if (n === '1') {
+    map[n] = true;
+    return map[n];
+  } else if (n === '2' || n === '3' || n === '4' || n === '5') {
+    map[n] = false;
+    return map[n];
+  } else {
+    if (n === '10') {
+      map[n] = true;
+      return map[n];
+    } else if (Number(n) < 10) {
+      total = Number(n) * Number(n);
+    } else {
+      arr = n.split('');
+      for (let i = 0; i < arr.length; i++) {
+        arr[i] = Number(arr[i]) * Number(arr[i]);
+        total += arr[i];
+      }
+    }
+  }
+  return isHappy(total);
+};
+
 /*
  * @param {number} n
  * @return {boolean}
  */
-var isHappy = function(n) {
+var isHappy = function (n) {
   if (n === 1) {
     return true;
   }
