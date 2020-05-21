@@ -19,12 +19,7 @@ Follow up:
 Could you do it without using any loop / recursion?
 */
 
-/**
- * @param {number} n
- * @return {boolean}
- */
-
-/**
+/*
  * @param {number} n
  * @return {boolean}
  */
