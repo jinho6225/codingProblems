@@ -21,6 +21,22 @@ The above arrows point to positions where the corresponding bits are different.
  * @param {number} y
  * @return {number}
  */
+
+var hammingDistance = function (x, y) {
+  // XOR bitwise operation
+  // https://www.khanacademy.org/computing/computer-science/cryptography/ciphers/a/xor-bitwise-operation
+  /*
+    AND & OR & XOR
+    XOR is different each other, then return 1
+        x => 0001
+        y => 0100
+after XOR => 0101
+    then it make binary string (it will  '101' ) and split using '0' then return length
+  */
+
+  return (x ^ y).toString(2).split('0').join('').length;
+};
+
 var hammingDistance = function (x, y) {
   let aLen = x.toString(2).length;
   let bLen = y.toString(2).length;
