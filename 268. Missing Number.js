@@ -26,17 +26,13 @@ var missingNumber = function (nums) {
   let max = Math.max(...nums),
     sum = 0,
     total = 0;
-  for (let i = 0; i < nums.length; i++) {
-    sum += nums[i];
-  }
   for (let i = 0; i <= max; i++) {
+    if (nums[i]) {
+      sum += nums[i];
+    }
     total += i;
   }
-  if (sum === total) {
-    return max + 1;
-  } else {
-    return total - sum;
-  }
+  return sum === total ? max + 1 : total - sum;
 };
 
 //super slow...
