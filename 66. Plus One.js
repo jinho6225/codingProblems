@@ -18,24 +18,52 @@ Explanation: The array represents the integer 4321.
  * @param {number[]} digits
  * @return {number[]}
  */
-var plusOne = function(digits) {
+var plusOne = function (digits) {
   for (let i = digits.length - 1; i >= 0; i--) {
     if (i === 0) {
       if (digits[i] === 9) {
-        digits[i] = 1
-        digits[digits.length] = 0
+        digits[i] = 1;
+        digits[digits.length] = 0;
       } else {
-        digits[i] = digits[i] + 1
+        digits[i] = digits[i] + 1;
         break;
       }
     } else {
       if (digits[i] === 9) {
-        digits[i] = 0
+        digits[i] = 0;
       } else {
-        digits[i] = digits[i] + 1
+        digits[i] = digits[i] + 1;
         break;
       }
     }
   }
-  return digits
+  return digits;
+};
+
+var plusOne = function (digits) {
+  let i = digits.length - 1;
+  let j = 0;
+  if (digits[i - j] !== 9) {
+    digits[i - j] += 1;
+  } else {
+    while (digits[i - j] === 9) {
+      if (i - j === 0) {
+        if (digits[i - j] === 9) {
+          digits[i - j] = 0;
+        } else {
+          digits[i - j] += 1;
+        }
+        digits = [1].concat(digits);
+      } else {
+        if (digits[i - j] === 9) {
+          digits[i - j] = 0;
+        } else {
+          digits[i - j] += 1;
+        }
+      }
+      j++;
+    }
+    if (j <= i) digits[i - j] += 1;
+  }
+  return digits;
 };
