@@ -25,6 +25,18 @@ The answer is guaranteed to fit within a 32-bit integer, ie. answer <= 2^31 - 1.
  * @return {number}
  */
 var tribonacci = function (n) {
+  let arr = [0, 1, 1, 2];
+  if (n <= 3) {
+    return arr[n];
+  } else {
+    for (let i = 3; i < n; i++) {
+      arr.push(arr[i] + arr[i - 1] + arr[i - 2]);
+    }
+  }
+  return arr[arr.length - 1];
+};
+
+var tribonacci = function (n) {
   //t0 = 0
   //t1 = 1
   //t2 = 1
