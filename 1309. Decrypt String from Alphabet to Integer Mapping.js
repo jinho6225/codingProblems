@@ -26,7 +26,8 @@ Constraints:
 s[i] only contains digits letters ('0'-'9') and '#' letter.
 s will be valid string such that mapping is always possible.
 */
-/**
+
+/*
  * @param {string} s
  * @return {string}
  */
@@ -34,9 +35,15 @@ var freqAlphabets = function (s) {
   /*
 Characters ('a' to 'i') are represented by ('1' to '9') respectively.
 Characters ('j' to 'z') are represented by ('10#' to '26#') respectively.
-a=97
-z=122
-console.log('z'.charCodeAt())
+i could use charCode javascript and checked lowercase a and z code number as below
+a=97, z=122
+
+from j to z..letter number has # char.. need to remove this and join both number
+will divide all string and iterate newArr which was made from split('')
+and check if it's equal with '#', then change i-2 char as i-2 + i-1 and remove i-1, i
+then i will have all number of letter between 1 to 26
+
+finally i could use String.fromCharCode method
 */
   let arr = s.split('');
   for (let i = 0; i < arr.length; i++) {
