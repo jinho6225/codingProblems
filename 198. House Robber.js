@@ -21,23 +21,40 @@ Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (m
  * @param {number[]} nums
  * @return {number}
  */
-var rob = function(nums) {
-  if (nums.length === 0) return 0
-  for (let i = 2; i < nums.length; i++) {
-    minusTwo = nums[i-2]
-    minusThree = nums[i-3]
-    if (minusThree === undefined) {
-      minusThree = 0
+
+var rob = function (nums) {
+  if (nums.length === 0) return 0;
+  if (nums.length < 3) {
+    return Math.max(...nums);
+  } else {
+    for (let i = 2; i < nums.length; i++) {
+      if (nums[i - 3] > nums[i - 2]) {
+        nums[i] += nums[i - 3];
+      } else {
+        nums[i] += nums[i - 2];
+      }
     }
-    nums[i] = Math.max((nums[i] + minusTwo), (nums[i] + minusThree))
   }
-  return Math.max(...nums)
+  return Math.max(...nums);
 };
 
-var nums = [6,6,4,8,4,3,3,10]
+var rob = function (nums) {
+  if (nums.length === 0) return 0;
+  for (let i = 2; i < nums.length; i++) {
+    minusTwo = nums[i - 2];
+    minusThree = nums[i - 3];
+    if (minusThree === undefined) {
+      minusThree = 0;
+    }
+    nums[i] = Math.max(nums[i] + minusTwo, nums[i] + minusThree);
+  }
+  return Math.max(...nums);
+};
+
+var nums = [6, 6, 4, 8, 4, 3, 3, 10];
 //[1,3,1,3,100]
 //[2,1,1,2]
 //[2,4,8,9,9,3] //19
 //[6,3,10,8,2,10,3,5,10,5,3]//39
 //Output: 12
-rob(nums)
+rob(nums);
