@@ -20,6 +20,23 @@ Every cost[i] will be an integer in the range [0, 999].
  * @param {number[]} cost
  * @return {number}
  */
+
+var minCostClimbingStairs = function (cost) {
+  if (cost.length === 0) return 0;
+  if (cost.length < 3) {
+    return Math.min(...cost);
+  } else {
+    for (let i = 2; i < cost.length; i++) {
+      if (cost[i - 2] < cost[i - 1]) {
+        cost[i] += cost[i - 2];
+      } else {
+        cost[i] += cost[i - 1];
+      }
+    }
+  }
+  return Math.min(cost[cost.length - 2], cost[cost.length - 1]);
+};
+
 var minCostClimbingStairs = function (cost) {
   /*
 start could be index 0 or 1
