@@ -26,7 +26,7 @@ var maxProfit = function (prices) {
   if (prices.length === 0) return 0;
   let max = 0;
   let diff = 0;
-  prices.reduce((acc, cur, idx) => {
+  prices.reduce((acc, cur) => {
     if (cur < acc) {
       acc = cur;
       return acc;
