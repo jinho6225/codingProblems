@@ -30,6 +30,46 @@ Follow up: Solve it both recursively and iteratively.
  * @param {TreeNode} root
  * @return {boolean}
  */
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+  console.log(root);
+  let result = true;
+  if (!root) return result;
+  function compare(left, right) {
+    if (!left && !right) return;
+    if (!left) {
+      result = false;
+      return;
+    }
+    if (!right) {
+      result = false;
+      return;
+    }
+    if (left.val !== right.val) {
+      result = false;
+      return result;
+    }
+    compare(left.left, right.right);
+    compare(left.right, right.left);
+  }
+  compare(root.left, root.right);
+  return result;
+};
+
+////
+
 var isSymmetric = function (root) {
   if (!root) return true;
   let lnode = root,
