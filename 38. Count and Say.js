@@ -27,6 +27,29 @@ Explanation: For n = 3 the term was "21" in which we have two groups "2" and "1"
  * @param {number} n
  * @return {string}
  */
+
+var countAndSay = function (n) {
+  let arr = ['1'];
+  if (n === 1) return arr[n - 1];
+  if (n > 1) {
+    for (let i = 0; i < n - 1; i++) {
+      let count = 1;
+      let str = '';
+      let newArr = arr[i].split('');
+      for (let j = 0; j < newArr.length; j++) {
+        if (newArr[j] !== newArr[j + 1]) {
+          str = str + String(count) + newArr[j];
+          count = 1;
+        } else {
+          count++;
+        }
+      }
+      arr.push(str);
+    }
+  }
+  return arr[n - 1];
+};
+
 var countAndSay = function (n) {
   let str;
   if (n === 1) {
