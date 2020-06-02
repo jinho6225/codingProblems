@@ -33,6 +33,21 @@ Can you solve it using O(1) (i.e. constant) memory?
  * @param {ListNode} head
  * @return {boolean}
  */
+
+//slow fast runner
+var hasCycle = function (head) {
+  let p1 = head;
+  let p2 = head;
+  while (p2 && p2.next && p2.next.next) {
+    p1 = p1.next;
+    p2 = p2.next.next;
+    if (p1 === p2) {
+      return true;
+    }
+  }
+  return false;
+};
+
 var hasCycle = function (head) {
   let arr = [];
   let cur = head;
