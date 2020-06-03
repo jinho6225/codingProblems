@@ -28,6 +28,28 @@ Output: true
  * @param {string} s
  * @return {boolean}
  */
+
+var isValid = function (s) {
+  let arr = s.split(''),
+    queue = [];
+  if (arr.length % 2 === 1) return false;
+  for (let i = 0; i < arr.length; i++) {
+    if (queue.length !== 0) {
+      if (
+        (queue[0] === '(' && arr[i] === ')') ||
+        (queue[0] === '[' && arr[i] === ']') ||
+        (queue[0] === '{' && arr[i] === '}')
+      ) {
+        queue.shift();
+      }
+    }
+    if (arr[i] === '(' || arr[i] === '[' || arr[i] === '{') {
+      queue.unshift(arr[i]);
+    }
+  }
+  return queue.length === 0;
+};
+
 var isValid = function (s) {
   let stack = s.split(''),
     queue = [],
