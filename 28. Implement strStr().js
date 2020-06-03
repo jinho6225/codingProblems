@@ -20,8 +20,18 @@ For the purpose of this problem, we will return 0 when needle is an empty string
  * @param {string} needle
  * @return {number}
  */
+
 var strStr = function (haystack, needle) {
-  debugger;
+  if (needle.length === 0) return 0;
+  let arr = haystack.split(needle);
+  if (arr[0].length === haystack.length) {
+    return -1;
+  } else {
+    return arr[0].length;
+  }
+};
+
+var strStr = function (haystack, needle) {
   if (haystack === needle || needle === '') {
     return 0;
   } else if (needle.length > haystack.length) {
