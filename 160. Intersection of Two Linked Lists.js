@@ -39,6 +39,21 @@ Your code should preferably run in O(n) time and use only O(1) memory.
  * @param {ListNode} headB
  * @return {ListNode}
  */
+
+var getIntersectionNode = function (headA, headB) {
+  let arr = [];
+  while (headA) {
+    arr.push(headA);
+    headA = headA.next;
+  }
+  console.log(arr);
+  while (headB) {
+    if (arr.includes(headB)) return headB;
+    headB = headB.next;
+  }
+  return null;
+};
+
 var getIntersectionNode = function (headA, headB) {
   let map = new Map();
   while (headA) {
