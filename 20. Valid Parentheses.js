@@ -30,6 +30,19 @@ Output: true
  */
 
 var isValid = function (s) {
+  var array = [];
+  s = s.split('');
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === '(') array.unshift(')');
+    else if (s[i] === '[') array.unshift(']');
+    else if (s[i] === '{') array.unshift('}');
+    else if (s.length === 0 || array[0] !== s[i]) return false;
+    else array.shift();
+  }
+  return array.length === 0;
+};
+
+var isValid = function (s) {
   let arr = s.split(''),
     queue = [];
   if (arr.length % 2 === 1) return false;
