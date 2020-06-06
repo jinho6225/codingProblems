@@ -19,6 +19,18 @@ Explanation: The square root of 8 is 2.82842..., and since
  * @param {number} x
  * @return {number}
  */
+
+var mySqrt = function (x) {
+  for (var i = 0; i * i <= x; i++) {
+    if (i * i === x) {
+      return i;
+    } else if (i * i > x) {
+      return i - 1;
+    }
+  }
+  return i - 1;
+};
+
 var mySqrt = function (x) {
   let i = 1;
   let num = i ** 2;
