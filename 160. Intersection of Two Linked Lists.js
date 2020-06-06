@@ -41,12 +41,31 @@ Your code should preferably run in O(n) time and use only O(1) memory.
  */
 
 var getIntersectionNode = function (headA, headB) {
+  //headA + headB = [4,1,8,4,5][5,0,1,//8,4,5]
+  //headB + headA = [5,0,1,8,4,5][4,1,//8,4,5]
+  let curA = headA,
+    curB = headB;
+  while (curA !== curB) {
+    if (curA === null) {
+      curA = headB;
+    } else {
+      curA = curA.next;
+    }
+    if (curB === null) {
+      curB = headA;
+    } else {
+      curB = curB.next;
+    }
+  }
+  return curA;
+};
+
+var getIntersectionNode = function (headA, headB) {
   let arr = [];
   while (headA) {
     arr.push(headA);
     headA = headA.next;
   }
-  console.log(arr);
   while (headB) {
     if (arr.includes(headB)) return headB;
     headB = headB.next;
