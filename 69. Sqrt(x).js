@@ -21,6 +21,20 @@ Explanation: The square root of 8 is 2.82842..., and since
  */
 
 var mySqrt = function (x) {
+  let i = 0,
+    hi = x;
+  while (i <= hi) {
+    let mid = Math.floor((i + hi) / 2);
+    if (mid * mid > x) {
+      hi = mid - 1;
+    } else {
+      i = mid + 1;
+    }
+  }
+  return hi;
+};
+
+var mySqrt = function (x) {
   for (var i = 0; i * i <= x; i++) {
     if (i * i === x) {
       return i;
