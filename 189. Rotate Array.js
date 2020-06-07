@@ -29,6 +29,16 @@ Could you do it in-place with O(1) extra space?
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var rotate = function (nums, k) {
+  let arr = [];
+  while (k > 0) {
+    arr.unshift(nums.pop());
+    nums.unshift(arr.pop());
+    k--;
+  }
+  return nums;
+};
+
+var rotate = function (nums, k) {
   k = k % nums.length;
   let result = nums.splice(0, nums.length - k);
   for (let i = 0; i < result.length; i++) {
