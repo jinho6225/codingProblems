@@ -27,7 +27,25 @@ Follow up: Recursive solution is trivial, could you do it iteratively?
  * @param {TreeNode} root
  * @return {number[]}
  */
-var inorderTraversal = function (root) {
+
+var inorderTraversal_iterative = function (root) {
+  let list = [],
+    stack = [],
+    cur = root;
+  while (true) {
+    while (cur) {
+      stack.push(cur);
+      cur = cur.left;
+    }
+    if (stack.length === 0) break;
+    cur = stack.pop();
+    list.push(cur.val);
+    cur = cur.right;
+  }
+  return list;
+};
+
+var inorderTraversal_recursive = function (root) {
   let list = [];
   function helper(root) {
     if (!root) return null;
