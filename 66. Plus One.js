@@ -18,6 +18,25 @@ Explanation: The array represents the integer 4321.
  * @param {number[]} digits
  * @return {number[]}
  */
+
+var plusOne = function (digits) {
+  digits = digits.reverse(); // [3,2,1]
+  for (let i = 0; i < digits.length; i++) {
+    if (digits[i] === 9) {
+      if (i === digits.length - 1) {
+        digits[i] = 0;
+        digits[i + 1] = 1;
+        break;
+      }
+      digits[i] = 0; // [0,0,0]
+    } else {
+      digits[i] += 1;
+      break;
+    }
+  }
+  return digits.reverse();
+};
+
 var plusOne = function (digits) {
   for (let i = digits.length - 1; i >= 0; i--) {
     if (i === 0) {
