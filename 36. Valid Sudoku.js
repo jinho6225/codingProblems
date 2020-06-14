@@ -54,6 +54,83 @@ The given board size is always 9x9.
  * @param {character[][]} board
  * @return {boolean}
  */
+
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function (board) {
+  function checkCondition(arr, object) {
+    for (let j = 0; j < arr.length; j++) {
+      if (!object[arr[j]]) {
+        object[arr[j]] = 1;
+      } else {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  for (let i = 0; i < 9; i++) {
+    let row = [],
+      obj = {};
+    for (let k = 0; k < 9; k++) {
+      if (board[i][k] !== '.') {
+        row.push(board[i][k]);
+      }
+    }
+    if (!checkCondition(row, obj)) return false;
+  }
+
+  for (let i = 0; i < 9; i++) {
+    let col = [],
+      obj = {};
+    for (let k = 0; k < 9; k++) {
+      if (board[k][i] !== '.') {
+        col.push(board[k][i]);
+      }
+    }
+    if (!checkCondition(col, obj)) return false;
+  }
+  let map = {};
+  for (let i = 0; i < board.length; i++) {
+    for (let j = 0; j < board[i].length; j++) {
+      if (board[i][j] === '.') {
+        map[String(i + 1) + String(j + 1)] = false;
+      } else {
+        map[String(i + 1) + String(j + 1)] = board[i][j];
+      }
+    }
+  }
+
+  function checkBox(num, map) {
+    let box = [],
+      obj = {};
+    if (map[num]) box.push(map[num]);
+    if (map[num + 1]) box.push(map[num + 1]);
+    if (map[num + 2]) box.push(map[num + 2]);
+    if (map[num + 10]) box.push(map[num + 10]);
+    if (map[num + 11]) box.push(map[num + 11]);
+    if (map[num + 12]) box.push(map[num + 12]);
+    if (map[num + 20]) box.push(map[num + 20]);
+    if (map[num + 21]) box.push(map[num + 21]);
+    if (map[num + 22]) box.push(map[num + 22]);
+    if (!checkCondition(box, obj)) return false;
+    return true;
+  }
+
+  if (!checkBox(11, map)) return false;
+  if (!checkBox(14, map)) return false;
+  if (!checkBox(17, map)) return false;
+  if (!checkBox(41, map)) return false;
+  if (!checkBox(44, map)) return false;
+  if (!checkBox(47, map)) return false;
+  if (!checkBox(71, map)) return false;
+  if (!checkBox(74, map)) return false;
+  if (!checkBox(77, map)) return false;
+  return true;
+};
+
 var isValidSudoku = function (board) {
   for (let i = 0; i < 9; i++) {
     let row = [],
