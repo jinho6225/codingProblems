@@ -29,6 +29,32 @@ Output: true
  * @return {boolean}
  */
 
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isValid = function (s) {
+  let arr = s.split(''); //"["
+  let map = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  };
+  if (Object.values(map).includes(s[0])) return false;
+  let stack = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (map.hasOwnProperty(arr[i])) {
+      stack.push(map[arr[i]]);
+    } else {
+      if (arr[i] !== stack.pop()) {
+        return false;
+      }
+    }
+  }
+  if (stack.length > 0) return false;
+  return true;
+};
+
 var isValid = function (s) {
   var array = [];
   s = s.split('');
