@@ -17,6 +17,27 @@ Output: false
  * @return {boolean}
  */
 var isPalindrome = function (s) {
+  let reg = /\w/;
+  let str = '';
+  for (let i = 0; i < s.length; i++) {
+    if (reg.test(s[i])) {
+      str += s[i].toLowerCase();
+    }
+  }
+  let start = 0;
+  let last = str.length - 1;
+  while (start < last) {
+    if (str[start] === str[last]) {
+      start++;
+      last--;
+    } else {
+      return false;
+    }
+  }
+  return true;
+};
+
+var isPalindrome = function (s) {
   if (s.length === 0 || s.length === 1) {
     return true;
   }
