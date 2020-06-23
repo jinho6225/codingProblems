@@ -24,6 +24,40 @@ Could you do it in O(n) time and O(1) space?
  */
 
 var isPalindrome = function (head) {
+  if (!head) return true;
+  function reverseLinkedList(head) {
+    let cur = head;
+    let prev = null;
+    while (cur) {
+      let tmp = cur.next;
+      cur.next = prev;
+      prev = cur;
+      cur = tmp;
+    }
+    head = prev;
+    return head;
+  }
+
+  let cur1 = head;
+  let cur2 = head;
+
+  while (cur2.next && cur2.next.next) {
+    cur2 = cur2.next.next;
+    cur1 = cur1.next;
+  }
+
+  cur1.next = reverseLinkedList(cur1.next);
+  cur1 = cur1.next;
+
+  while (cur1 != null) {
+    if (head.val != cur1.val) return false;
+    head = head.next;
+    cur1 = cur1.next;
+  }
+  return true;
+};
+
+var isPalindrome = function (head) {
   let stack = [];
   let cur = head; //1-2-2-1 //[1,1,1,1,3,3,3,3,1,1,1,1]
   while (cur) {
