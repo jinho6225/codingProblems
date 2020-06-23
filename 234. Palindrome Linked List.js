@@ -37,18 +37,14 @@ var isPalindrome = function (head) {
     head = prev;
     return head;
   }
-
   let cur1 = head;
   let cur2 = head;
-
   while (cur2.next && cur2.next.next) {
     cur2 = cur2.next.next;
     cur1 = cur1.next;
   }
-
   cur1.next = reverseLinkedList(cur1.next);
   cur1 = cur1.next;
-
   while (cur1 != null) {
     if (head.val != cur1.val) return false;
     head = head.next;

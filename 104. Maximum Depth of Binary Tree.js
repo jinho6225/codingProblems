@@ -1,3 +1,26 @@
+var maxDepth = function (root) {
+  if (!root) return 0;
+  let count = 1;
+  let max = count;
+  function helper(root, count) {
+    if (!root.left && !root.right) {
+      return;
+    }
+    count++;
+    if (count > max) {
+      max = count;
+    }
+    if (root.left) {
+      helper(root.left, count);
+    }
+    if (root.right) {
+      helper(root.right, count);
+    }
+  }
+  helper(root, count);
+  return max;
+};
+
 //5/19/20 solve this problem again
 //using depthFirstSearch
 
