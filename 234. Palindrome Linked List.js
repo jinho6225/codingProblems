@@ -23,6 +23,26 @@ Could you do it in O(n) time and O(1) space?
  * @return {boolean}
  */
 
+var isPalindrome = function (head) {
+  let stack = [];
+  let cur = head; //1-2-2-1 //[1,1,1,1,3,3,3,3,1,1,1,1]
+  while (cur) {
+    stack.push(cur.val);
+    cur = cur.next;
+  }
+  let first = 0;
+  let last = stack.length - 1;
+  while (first < last) {
+    if (stack[first] === stack[last]) {
+      first++;
+      last--;
+    } else {
+      return false;
+    }
+  }
+  return true;
+};
+
 //  Runtime: 52 ms, faster than 98.15% of JavaScript online submissions for Palindrome Linked List.
 // Memory Usage: 39.7 MB, less than 66.67% of JavaScript online submissions for Palindrome Linked List.
 // Next challenges:
