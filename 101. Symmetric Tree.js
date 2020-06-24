@@ -120,3 +120,81 @@ var isSymmetric = function (root) {
   }
   return true;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+  if (!root) return true;
+  let leftList = [];
+  let queue = [];
+  let cur = root;
+  queue.push(cur);
+  while (queue.length !== 0) {
+    cur = queue.shift();
+    if (cur === null) {
+      leftList.push(null);
+      continue;
+    } else {
+      leftList.push(cur.val);
+    }
+    if (cur.left) {
+      queue.push(cur.left);
+    } else if (!cur.left && !cur.right) {
+      queue.push(null);
+    } else {
+      queue.push(null);
+    }
+    if (cur.right) {
+      queue.push(cur.right);
+    } else if (!cur.left && !cur.right) {
+      queue.push(null);
+    } else {
+      queue.push(null);
+    }
+  }
+
+  let rightList = [];
+  let queue2 = [];
+  let cur2 = root;
+  queue2.push(cur2);
+  while (queue2.length !== 0) {
+    cur2 = queue2.shift();
+    if (cur2 === null) {
+      rightList.push(null);
+      continue;
+    } else {
+      rightList.push(cur2.val);
+    }
+
+    if (cur2.right) {
+      queue2.push(cur2.right);
+    } else if (!cur2.left && !cur2.right) {
+      queue2.push(null);
+    } else {
+      queue2.push(null);
+    }
+    if (cur2.left) {
+      queue2.push(cur2.left);
+    } else if (!cur2.left && !cur2.right) {
+      queue2.push(null);
+    } else {
+      queue2.push(null);
+    }
+  }
+  let i = 0;
+  while (i < leftList.length) {
+    if (leftList[i] !== rightList[i]) return false;
+    i++;
+  }
+  return true;
+};
