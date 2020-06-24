@@ -198,3 +198,43 @@ var isSymmetric = function (root) {
   }
   return true;
 };
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+  let isSymmetric = true;
+  if (!root) return isSymmetric;
+  let compare = (leftRoot, rightRoot) => {
+    if (!leftRoot && !rightRoot) return;
+    if (!leftRoot) {
+      if (rightRoot) {
+        isSymmetric = false;
+        return;
+      }
+    }
+    if (!rightRoot) {
+      if (leftRoot) {
+        isSymmetric = false;
+        return;
+      }
+    }
+    if (leftRoot.val !== rightRoot.val) {
+      isSymmetric = false;
+      return;
+    }
+    compare(leftRoot.left, rightRoot.right);
+    compare(leftRoot.right, rightRoot.left);
+  };
+  compare(root.left, root.right);
+  return isSymmetric;
+};
