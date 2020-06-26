@@ -30,6 +30,25 @@ The total number of nodes is between [0, 10^4]
  * @return {number[]}
  */
 
+//Iterative solution
+var postorder = function (root) {
+  let stack = [],
+    list = [];
+  if (!root) return list;
+  let cur = root;
+  stack.push(cur);
+  while (stack.length > 0) {
+    cur = stack.pop();
+    list.unshift(cur.val);
+    if (cur.children) {
+      for (let i = 0; i < cur.children.length; i++) {
+        stack.push(cur.children[i]);
+      }
+    }
+  }
+  return list;
+};
+
 //Recursive solution
 var postorder = function (root) {
   let list = [];
