@@ -48,3 +48,36 @@ var addTwoNumbers = function (l1, l2) {
   }
   return node.next;
 };
+
+var addTwoNumbers = function (l1, l2) {
+  let arr = [];
+  let sum = 0,
+    carry = 0;
+  while (l1 || l2) {
+    if (l1) {
+      sum += l1.val;
+      l1 = l1.next;
+    }
+    if (l2) {
+      sum += l2.val;
+      l2 = l2.next;
+    }
+    if (sum >= 10) {
+      sum = sum - 10;
+      carry = 1;
+    }
+    arr.push(sum);
+    sum = carry;
+    carry = 0;
+  }
+  if (sum) {
+    arr.push(sum);
+  }
+  let node = new ListNode();
+  let cur = node;
+  while (arr.length > 0) {
+    cur.next = new ListNode(arr.shift());
+    cur = cur.next;
+  }
+  return node.next;
+};
