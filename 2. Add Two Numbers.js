@@ -81,3 +81,51 @@ var addTwoNumbers = function (l1, l2) {
   }
   return node.next;
 };
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function (l1, l2) {
+  let sum = 0,
+    carry = 0;
+  let node = new ListNode();
+  let cur = node;
+  while (l1 || l2) {
+    if (l1) {
+      sum = sum + l1.val;
+      l1 = l1.next;
+    }
+    if (l2) {
+      sum = sum + l2.val;
+      l2 = l2.next;
+    }
+    if (sum >= 10) {
+      carry = 1;
+      sum = sum - 10;
+    }
+    cur.val = sum;
+    if (carry) {
+      cur.next = new ListNode();
+    }
+    sum = carry;
+    carry = 0;
+    if (!l1 && !l2) {
+      if (sum !== 0) {
+        cur.next = new ListNode(sum);
+      }
+      break;
+    }
+    cur.next = new ListNode();
+    cur = cur.next;
+  }
+  return node;
+};
