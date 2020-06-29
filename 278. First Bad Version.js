@@ -27,6 +27,27 @@ Then 4 is the first bad version.
  * @param {function} isBadVersion()
  * @return {function}
  */
+
+var solution = function (isBadVersion) {
+  /**
+   * @param {integer} n Total versions
+   * @return {integer} The first bad version
+   */
+  return function (n) {
+    let start = 1;
+    let last = n;
+    while (start < last) {
+      var mid = Math.floor((start + last) / 2);
+      if (isBadVersion(mid)) {
+        last = mid;
+      } else {
+        start = mid + 1;
+      }
+    }
+    return start;
+  };
+};
+
 var solution = function (isBadVersion) {
   /*
    * @param {integer} n Total versions
