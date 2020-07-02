@@ -122,3 +122,24 @@ var isValid = function (s) {
   if (queue.length !== 0) result = false;
   return result;
 };
+
+var isValid = function (s) {
+  let inValidArr = [')', '}', ']'];
+  let map = {
+    '(': ')',
+    '[': ']',
+    '{': '}',
+  };
+  let arr = [];
+  if (s.length % 2 === 1) return false;
+  if (inValidArr.includes(s[0])) return false;
+  for (let i = 0; i < s.length; i++) {
+    if (map.hasOwnProperty(s[i])) {
+      arr.unshift(map[s[i]]);
+    } else {
+      if (s[i] === arr[0]) arr.shift();
+    }
+  }
+  if (arr.length === 0) return true;
+  return false;
+};
