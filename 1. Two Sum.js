@@ -15,6 +15,18 @@ return [0, 1].
  * @return {number[]}
  */
 
+var twoSum = function (nums, target) {
+  let obj = new Map();
+  for (let i = 0; i < nums.length; i++) {
+    let diff = target - nums[i];
+    if (!obj.has(diff)) {
+      obj.set(nums[i], i);
+    } else {
+      return [obj.get(diff), i];
+    }
+  }
+};
+
 //Runtime: 52 ms, faster than 92.37% of JavaScript online submissions for Two Sum.
 var twoSum = function (nums, target) {
   let newObj = {};
