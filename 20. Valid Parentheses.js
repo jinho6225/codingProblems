@@ -33,6 +33,27 @@ Output: true
  * @param {string} s
  * @return {boolean}
  */
+
+var isValid = function (s) {
+  let inValidArr = [')', '}', ']'];
+  let map = new Map();
+  map.set('(', ')');
+  map.set('[', ']');
+  map.set('{', '}');
+  let arr = [];
+  if (s.length % 2 === 1) return false;
+  if (inValidArr.includes(s[0])) return false;
+  for (let i = 0; i < s.length; i++) {
+    if (map.has(s[i])) {
+      arr.unshift(map.get(s[i]));
+    } else {
+      if (s[i] === arr[0]) arr.shift();
+    }
+  }
+  if (arr.length === 0) return true;
+  return false;
+};
+
 var isValid = function (s) {
   let arr = s.split(''); //"["
   let map = {
