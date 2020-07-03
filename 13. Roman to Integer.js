@@ -67,3 +67,43 @@ var romanToInt = function (s) {
 };
 
 romanToInt('MCMXCIV');
+
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var romanToInt = function (s) {
+  let map = new Map();
+  map.set('I', 1);
+  map.set('V', 5);
+  map.set('X', 10);
+  map.set('L', 50);
+  map.set('C', 100);
+  map.set('D', 500);
+  map.set('M', 1000);
+  let count = 0;
+  for (let i = s.length - 1; i >= 0; i--) {
+    if (s[i] === 'V' && s[i - 1] === 'I') {
+      count += map.get(s[i]) - map.get(s[i - 1]);
+      i--;
+    } else if (s[i] === 'X' && s[i - 1] === 'I') {
+      count += map.get(s[i]) - map.get(s[i - 1]);
+      i--;
+    } else if (s[i] === 'L' && s[i - 1] === 'X') {
+      count += map.get(s[i]) - map.get(s[i - 1]);
+      i--;
+    } else if (s[i] === 'C' && s[i - 1] === 'X') {
+      count += map.get(s[i]) - map.get(s[i - 1]);
+      i--;
+    } else if (s[i] === 'D' && s[i - 1] === 'C') {
+      count += map.get(s[i]) - map.get(s[i - 1]);
+      i--;
+    } else if (s[i] === 'M' && s[i - 1] === 'C') {
+      count += map.get(s[i]) - map.get(s[i - 1]);
+      i--;
+    } else if (map.has(s[i])) {
+      count += map.get(s[i]);
+    }
+  }
+  return count;
+};
