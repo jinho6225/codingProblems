@@ -20,6 +20,25 @@ Explanation:
  * @return {boolean}
  */
 
+var isHappy = function (n) {
+  let map = new Map();
+  function helper(n) {
+    if (map.has(n)) {
+      return false;
+    } else {
+      let sum = 0;
+      if (n === 1) return true;
+      map.set(n, false);
+      let strArr = String(n).split('');
+      for (let i = 0; i < strArr.length; i++) {
+        sum += strArr[i] ** 2;
+      }
+      return helper(sum);
+    }
+  }
+  return helper(n);
+};
+
 /*
 we will have type number positivie integer
 need to convert string and array
