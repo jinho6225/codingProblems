@@ -32,18 +32,59 @@ Google: 90% of our engineers use the software you wrote (Homebrew), but you canâ
  * @param {TreeNode} root
  * @return {TreeNode}
  */
-var invertTree = function(root) {
-    if (root === null) {
-        return null;
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function (root) {
+  function helper(root) {
+    if (!root) return null;
+    if (root.left && root.right) {
+      let temp = root.left;
+      root.left = root.right;
+      root.right = temp;
+    } else if (root.left && !root.right) {
+      let temp = root.left;
+      root.left = null;
+      root.right = temp;
+    } else if (!root.left && root.right) {
+      let temp = root.right;
+      root.left = temp;
+      root.right = null;
     }
-    if (root) {
-      let temp = root.left
-      root.left = root.right
-      root.right = temp
+
+    if (root.left) {
+      helper(root.left);
     }
-    invertTree(root.left)
-    invertTree(root.right)
-    return root
+    if (root.right) {
+      helper(root.right);
+    }
+  }
+  helper(root);
+  return root;
+};
+
+var invertTree = function (root) {
+  if (root === null) {
+    return null;
+  }
+  if (root) {
+    let temp = root.left;
+    root.left = root.right;
+    root.right = temp;
+  }
+  invertTree(root.left);
+  invertTree(root.right);
+  return root;
 };
 
 var node = {
@@ -53,26 +94,26 @@ var node = {
     left: {
       val: 1,
       left: null,
-      right: null
+      right: null,
     },
     right: {
       val: 3,
       left: null,
-      right: null
-    }
+      right: null,
+    },
   },
   right: {
     val: 7,
     left: {
       val: 6,
       left: null,
-      right: null
+      right: null,
     },
     right: {
       val: 9,
       left: null,
-      right: null
-    }
-  }
-}
-invertTree(node)
+      right: null,
+    },
+  },
+};
+invertTree(node);
