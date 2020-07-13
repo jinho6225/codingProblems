@@ -16,6 +16,20 @@ Output:
  * @param {number[]} nums
  * @return {number[]}
  */
+
+var findDisappearedNumbers = function (nums) {
+  let last = nums.length;
+  let arr = [];
+  let i = 1;
+  while (i <= last) {
+    if (!nums.includes(i)) {
+      arr.push(i);
+    }
+    i++;
+  }
+  return arr;
+};
+
 var findDisappearedNumbers = function (nums) {
   let last = nums.length;
   let set = new Set(nums);
