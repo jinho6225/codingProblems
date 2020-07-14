@@ -36,9 +36,27 @@ var findDisappearedNumbers = function (nums) {
   nums = Array.from(set);
   nums.sort((a, b) => a - b);
   let arr = [];
-  console.log(last);
   for (let i = 1; i <= last; i++) {
     if (!nums.includes(i)) {
+      arr.push(i);
+    }
+  }
+  return arr;
+};
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var findDisappearedNumbers = function (nums) {
+  let map = {};
+  for (let i = 0; i < nums.length; i++) {
+    map[nums[i]] = true;
+  }
+  let arr = [];
+  let len = nums.length;
+  for (let i = 1; i <= len; i++) {
+    if (!map.hasOwnProperty(String(i))) {
       arr.push(i);
     }
   }
