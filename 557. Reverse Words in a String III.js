@@ -45,3 +45,12 @@ var reverseWords = function (s) {
   }
   return newArr.join(' ');
 };
+
+
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        arr = s.split(' ')
+        lst = []
+        for x in arr:
+            lst.append(x[::-1])
+        return " ".join(lst)
