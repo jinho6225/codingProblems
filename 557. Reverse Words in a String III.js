@@ -46,7 +46,8 @@ var reverseWords = function (s) {
   return newArr.join(' ');
 };
 
-
+/*
+python
 class Solution:
     def reverseWords(self, s: str) -> str:
         arr = s.split(' ')
@@ -54,3 +55,4 @@ class Solution:
         for x in arr:
             lst.append(x[::-1])
         return " ".join(lst)
+*/
