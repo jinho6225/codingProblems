@@ -42,6 +42,27 @@ var intersect = function(nums1, nums2) {
   return result
 };
 
+//alternative
+
+var intersect = function(nums1, nums2) {
+  let map = new Map()
+  for (let i = 0; i < nums1.length; i++) {
+      if (map.has(nums1[i])) {
+          map.set(nums1[i], map.get(nums1[i]) + 1)
+      } else {
+          map.set(nums1[i], 1)
+      }
+  }
+  let result = [];
+  for (let n of nums2) {
+      if (map.has(n) && map.get(n) > 0) {
+          result.push(n)
+          map.set(n, map.get(n) - 1);
+      }
+  }
+  return result
+};
+
 var nums1 = [4,9,5]
 var nums2 = [9,4,9,8,4]
 // [1,2,2,1]
