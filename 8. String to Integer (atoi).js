@@ -91,3 +91,44 @@ var myAtoi = function (str) {
 
 var s = '-   234';
 myAtoi(s);
+
+
+
+/**
+ * @param {string} str
+ * @return {number}
+ */
+var myAtoi = function(str) {
+  let negative = false
+      let maxNum = Math.pow(2, 31) - 1
+      let minNum = Math.pow(2, 31) * -1
+      str = str.trim()
+      if (str[0] === '-') {
+          negative = true
+          str = str.substring(1)
+      } else if (str[0] === '+') {
+          str = str.substring(1)
+      }
+      let result = ""
+      for (let i = 0; i < str.length; i++) {
+          if (Number(str[i]) >= 0 && Number(str[i]) <=9 && str[i] !== ' ') {
+              result += str[i]
+          } else {
+              break;
+          }
+      }
+      str = result
+      if (!negative) {
+          if (Number(str) > maxNum) { 
+              return maxNum
+      }
+          return Number(str)
+      } else {
+
+          if (Number(str)* -1 < minNum) {
+              return minNum
+      }
+          return Number(str) * -1
+      }
+
+};
