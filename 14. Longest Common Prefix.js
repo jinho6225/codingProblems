@@ -71,3 +71,27 @@ var input = ['flower', 'flow', 'flight'];
 // var input = ["dog","racecar","car"]
 // Output: ""
 longestCommonPrefix(input);
+
+
+
+var longestCommonPrefix = function (strs) {
+  let result = "";
+  if (!strs.length) return result;
+  strs = strs.sort((a, b) => b.length - a.length);
+  let i = 0, incorrect = false
+  while (i < strs[0].length) {
+    let target = strs[0].substring(0, i + 1);
+    for (let j = 1; j < strs.length; j++) {
+      let array = strs[j].split(target)
+      if (array.length === 1 || array[0] !== "") {
+        incorrect = true
+        break;
+      } 
+    }
+    if (!incorrect) {
+      result = target
+    }
+    i++;
+  }
+  return result
+};
