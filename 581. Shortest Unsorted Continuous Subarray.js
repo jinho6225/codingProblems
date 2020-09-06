@@ -36,3 +36,17 @@ var findUnsortedSubarray = function(nums) {
 };
 
 
+//100ms O(n log n)
+var findUnsortedSubarray = function(nums) {
+    let sortedNums = nums.slice().sort((a,b) => a-b)
+    let result = []
+    for (let i = 0; i < nums.length; i++) {
+        if (nums[i] !== sortedNums[i]) {
+            result.push(i)
+        }
+    }
+    if (!result.length) return 0
+    return Math.max(...result) - Math.min(...result) + 1
+};
+
+
