@@ -75,3 +75,30 @@ var input = [1, 2, 3, 4];
 
 productExceptSelf(input);
 //Output: [24,12,8,6]
+
+
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var productExceptSelf = function(nums) {
+  let n = nums.length
+    if(n == 0 || n == 1) return []
+
+  let productArr = []
+  let product = 1
+  for (let i = 0; i <= n-1; i++) {
+    productArr[i] = product
+    product *= nums[i]
+  }
+  product = 1
+  for (let i = n-1; i >= 0; i--) {
+    productArr[i] *= product
+    product *= nums[i]
+  }
+  return productArr
+  for (let i = 0; i < nums.length; i++) {
+    nums[i] = total / nums[i]
+  }
+  return nums    
+};
