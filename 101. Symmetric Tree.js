@@ -238,3 +238,28 @@ var isSymmetric = function (root) {
   compare(root.left, root.right);
   return isSymmetric;
 };
+
+
+var isSymmetric = function(root) {
+  if (!root) return true
+  let cur1 = root
+let cur2 = root
+let queue1 =[], queue2 =[]
+queue1.push(cur1) 
+queue2.push(cur2) 
+while (queue1.length && queue2.length) {
+  cur1 = queue1.shift()
+  cur2 = queue2.shift()
+  if (cur1.val !== cur2.val) return false
+      if (!cur1.left && cur2.right) {
+            return false
+      } else if (cur1.left && !cur2.right) {
+            return false
+      } 
+      if (cur1.left) queue1.push(cur1.left) 
+      if (cur2.right) queue2.push(cur2.right)
+      if (cur1.right) queue1.push(cur1.right)
+      if (cur2.left) queue2.push(cur2.left)   
+  }
+  return true
+};
