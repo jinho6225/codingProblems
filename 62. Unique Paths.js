@@ -36,3 +36,28 @@ var uniquePaths = function(m, n) {
     }
     return facto(a) / facto(b) / facto(c)
 };
+
+//another solution
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function(m, n) {
+    let arr = []
+    for (let i = 0; i < n; i++) {
+        let array = []
+        for (let j = 0; j < m; j++) {
+            if (i === 0 || j === 0) {
+                array.push(1)
+            }
+        }
+        arr.push(array)
+    }
+    for (let i = 1; i < n; i++) {
+        for (let j = 1; j < m; j++) {
+            arr[i][j] = arr[i-1][j] + arr[i][j-1]
+        }
+    }
+    return arr[n-1][m-1]
+};
