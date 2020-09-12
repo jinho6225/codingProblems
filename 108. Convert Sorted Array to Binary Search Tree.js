@@ -36,3 +36,12 @@ var sortedArrayToBST = function (nums) {
   node.right = sortedArrayToBST(right);
   return node;
 };
+
+//another solution 9/12/2020
+var sortedArrayToBST = function(nums) {
+  if (!nums.length) return null
+  let mid = Math.floor(nums.length/2)
+  let left = sortedArrayToBST(nums.slice(0, mid))
+  let right = sortedArrayToBST(nums.slice(mid+1))
+  return new TreeNode(nums[mid], left, right)
+};
