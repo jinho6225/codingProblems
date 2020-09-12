@@ -59,3 +59,27 @@ var levelOrder = function (root) {
   }
   return list;
 };
+
+var levelOrder = function(root) {
+  let list = []
+  let depth = 1
+  function helper(root, depth) {
+      if (!root) return
+      let obj = {
+          val: root.val,
+          depth: depth
+      }
+      list.push(obj)
+      depth++
+      if (root.left) helper(root.left, depth)
+      if (root.right) helper(root.right, depth)
+  }
+  helper(root, depth)
+  let result = [], lst = []
+  for (let i = 0; i < list.length; i++) {
+      if (!lst[list[i].depth - 1])
+      lst[list[i].depth - 1] = []
+      lst[list[i].depth - 1].push(list[i].val)
+  }
+  return lst
+};
