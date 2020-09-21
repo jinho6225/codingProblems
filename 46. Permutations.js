@@ -59,3 +59,42 @@ var permute = function (nums) {
 
 var input = [1, 2, 3];
 permute(input);
+
+
+//another solution added
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var permute = function(nums) {
+  let result = []
+  if (nums.length === 1) {
+      result.push(nums)
+      return result
+  } else if (nums.length === 2) {
+      result.push([...nums])
+      result.push([nums[1], nums[0]])
+      return result
+  } else {
+     return helper(nums)
+  }
+  function helper(nums) {
+      let arr = []
+      if (nums.length === 2) {
+          arr.push([...nums])
+          arr.push([nums[1], nums[0]])
+          return arr
+      }
+      for (let i = 0; i < nums.length; i++) {
+          let newArr = nums.slice(0)
+          newArr.splice(i,1) 
+          let returnArray = helper(newArr)
+          for (let ar of returnArray) {
+              arr.push([nums[i], ...ar])
+          }
+      }
+      return arr
+  }
+};
+
