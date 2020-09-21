@@ -21,42 +21,67 @@ Output: 1
  * @param {string} tiles
  * @return {number}
  */
+
 var numTilePossibilities = function(tiles) {
-    let answer = new Set()
+    let set = new Set()
     function helper(str) {
-        if (str.length === 2) {
-            let arr = []
-            arr.push(str)
-            arr.push(str[1]+str[0])
-            answer.add(arr)
-            return arr
+      if (str.length === 2) {
+        let array = []
+        array.push(str)
+        array.push(str[1] + str[0])
+        set.add([...array])
+        return array
+      }
+      if (str.length > 2) {
+        let array = []
+        for (let i = 0; i < str.length; i++) {
+          let newString = str.substring(0,i) + str.substring(i+1)
+          let arr = helper(newString)
+          for (let j = 0; j < arr.length; j++) {
+            let a = str[i] + arr[j]
+            array.push(a)
+          }
         }
-        if (str.length > 2) {
-            let arr = []
-            for (let i = 0; i < str.length; i++) {
-                let string = str.substring(0,i) + str.substring(i+1)
-                let mySet = helper(string)
-                for (let j = 0; j < mySet.length; j++) {
-                    arr.push(str[i] + mySet[j])
-                }
-            }
-            answer.add(arr)
-            return arr
-        }
+        let newArr = new Set(array)
+        set.add([...newArr])
+        return array
+      }          
+    }
+    for (let i = 0; i < tiles.length; i++) {
+        set.add(tiles[i])
     }
     helper(tiles)
-    for (let i = 0; i < tiles.length; i++) {
-        answer.add(tiles[i])
-    }
-    let result = []
-    answer.forEach(el => result.push(...el))
-    let set = new Set(result)
-    return set.size  
+    return new Set(Array.from(set).flat(Infinity)).size
 };
 
-/*
-  ''
-A A B
-AA  AB   BA
-AAB ABA BAA 
-*/
+
+
+/**
+ * @param {string} tiles
+ * @return {number}
+ */
+var numTilePossibilities = function(tiles) {
+  let result = new Set()
+  for (let i = 0; i < tiles.length; i++) {
+      result.add(tiles[i])
+  }    
+  function helper(tiles) {
+      let arr = []
+      if (tiles.length === 2) {
+          result.add(tiles)
+          result.add(tiles[1]+tiles[0])
+          arr.push(tiles, tiles[1]+tiles[0])
+          return arr
+      }
+      for (let i = 0; i < tiles.length; i++) {
+          let returnArr = helper(tiles.substring(0,i)+tiles.substring(i+1))
+          for (let ele of returnArr) {
+              result.add(tiles[i]+ele)
+              arr.push(tiles[i]+ele)
+          }
+      }
+      return arr    
+  }
+  helper(tiles)
+  return result.size
+};
