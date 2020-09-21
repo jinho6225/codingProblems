@@ -24,7 +24,6 @@ Output:
  * @return {number[][]}
  */
 var subsets = function(nums) {
-    debugger;
     let subsetsArray = [[]]; 
     for(const num of nums){ 
         for(let array of [...subsetsArray]) 
@@ -32,6 +31,25 @@ var subsets = function(nums) {
     }
     return subsetsArray;
 };
+
+//recursive
+
+/**
+ * @param {number[]} nums
+ * @return {number[][]}
+ */
+var subsets = function(nums) {
+    let result = []
+    const helper = (idx=0, arr=[]) => {
+        result.push(arr)
+        for(let i = idx; i < nums.length; i++) {
+            helper(i+1, arr.concat(nums[i]))
+        }   
+    }
+    helper()
+    return result
+};
+
 
 
 
