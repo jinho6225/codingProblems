@@ -39,3 +39,28 @@ var countNodes = function(root) {
     }
     return list.length
 };
+
+//another solution added
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var countNodes = function(root) {
+    let count = 0
+    function helper(node) {
+        if (!node) return
+        count++
+        if (node.left) helper(node.left)
+        if (node.right) helper(node.right)
+    }
+    helper(root)
+    return count
+};
