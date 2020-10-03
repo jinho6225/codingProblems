@@ -70,3 +70,38 @@ var leafSimilar = function(root1, root2) {
     }
     return true
 };
+
+//similar concept, efficient code
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
+ * }
+ */
+/**
+ * @param {TreeNode} root1
+ * @param {TreeNode} root2
+ * @return {boolean}
+ */
+var leafSimilar = function(root1, root2) {
+    function helper(node, list=[]) {
+        if (!node) return
+        if (!node.left && !node.right) {
+            list.push(node.val)
+        }
+        if (node.left) helper(node.left, list)
+        if (node.right) helper(node.right, list)
+        return list
+    }
+    let a = helper(root1)
+    let b = helper(root2)
+    if (a.length !== b.length) return false
+    let i = 0
+    while (a.length > i) {
+        if (a[i] !== b[i]) return false
+        i++
+    }
+    return true
+};
