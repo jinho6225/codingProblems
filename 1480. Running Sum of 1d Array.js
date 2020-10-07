@@ -32,3 +32,17 @@ var runningSum = function (nums) {
   }
   return nums;
 };
+
+//another solution added
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var runningSum = function(nums) {
+  let newArr = []
+  newArr.push(nums[0])
+  for (let i = 1; i < nums.length; i++) {
+      newArr.push(nums[i]+newArr[i-1])
+  }
+  return newArr
+};
