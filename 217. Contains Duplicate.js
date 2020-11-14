@@ -28,3 +28,18 @@ var containsDuplicate = function (nums) {
 };
 var arr = [1, 1, 1, 3, 3, 4, 3, 2, 4, 2];
 console.log(containsDuplicate(arr));
+
+
+
+// 44ms
+var containsDuplicate = function(nums) {
+  return new Set(nums).size < nums.length;
+};
+
+// 4400ms
+var containsDuplicate = function(nums) {
+  for (let i = 0; i < nums.length; i++) {
+      if (nums.indexOf(nums[i]) !== nums.lastIndexOf(nums[i])) return true 
+  }   
+  return false
+};
