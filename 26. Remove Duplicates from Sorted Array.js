@@ -60,3 +60,33 @@ var removeDuplicates = function(nums) {
     }
     return j+1
 };
+
+
+// 11/13/2020
+
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var removeDuplicates = function(nums) {
+    let po1 = 0
+    let po2 = 0
+    while (po1 < nums.length) {
+        if (nums[po1] === nums[po1+1]) {
+            po1++
+        } else {
+            nums[po2+1] = nums[po1+1]
+            po1++
+            po2++
+        }
+    }
+    return po2
+};
+/*
+
+Input: nums = [0,0,1,1,1,2,2,3,3,4]
+Output: 5, nums = [0,1,2,3,4]
+[0,1,2,3,4,2,2,3,3,4]
+                   1
+         2
+*/
