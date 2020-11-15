@@ -72,3 +72,46 @@ var matrix = [
   [7, 8, 9],
 ];
 rotate(matrix);
+
+
+// 11/14/2020
+
+/*
+  O(n^2)
+  O(n)
+*/
+var rotate = function(matrix) {
+  matrix.reverse()
+  let object = {}
+  for (let i = 0; i < matrix.length; i++) {
+      for (let j = 0; j < matrix[i].length; j++) {
+          if (j in object) {
+              object[j].push(matrix[i][j])
+          } else {
+              object[j] = []
+              object[j].push(matrix[i][j])
+          }
+      }
+  }
+  for (let i  = 0; i < matrix.length; i++) {
+      if (i in object) {
+          matrix[i] = object[i]
+      }
+  }
+};
+//[[1,2,3],[4,5,6],[7,8,9]] => [[7,8,9],[4,5,6],[1,2,3]]
+//                               0,1,2   0,1,2   0,1,2
+//[[7,4,1],[8,5,2],[9,6,3]] => [[7,4,1],[8,5,2],[9,6,3]]
+//                                 0       1       2
+//reverse matrix
+/*
+define empty object
+iterate array matrix
+  iterate array matrix[i]
+      if object has j index property
+          current element push into that array
+      if not,
+          assign property as j index and value is empaty array
+          current element push into that array
+          
+*/
