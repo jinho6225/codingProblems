@@ -75,3 +75,27 @@ firstUniqChar(s);
 //     }
 //     return -1
 // };
+
+/*
+ * @param {string} s
+ * @return {number}
+ */
+var firstUniqChar = function(s) {
+  let obj = {}
+  for (let i = 0; i < s.length; i++) {
+      if (s[i] in obj) {
+          obj[s[i]].val += 1
+      } else {
+          obj[s[i]] = {val: 1, idx: i}
+      }
+  }
+  let result, last = Infinity;
+  for (let key in obj) {
+      if (obj[key].val === 1 && obj[key].idx < last) {
+          last = obj[key].idx
+          result = obj[key].val
+      }
+  }
+  if (!result) return -1
+  return last
+};
