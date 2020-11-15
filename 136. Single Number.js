@@ -28,7 +28,6 @@ var singleNumber = function(nums) {
       obj[nums[i]] += 1;
     }
   }
-  console.log(obj);
   for (let key in obj) {
     if (obj[key] === 1) {
       return key;

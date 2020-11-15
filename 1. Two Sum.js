@@ -68,3 +68,31 @@ var nums = [11, 15, 2, 7];
 // var nums = [3,3]
 var target = 9;
 twoSum(nums, target);
+
+// 11/14/2020
+
+var twoSum = function(nums, target) {
+  let obj = {}
+  for (let i = 0; i < nums.length; i++) {
+      let diff = target - nums[i]
+      if (diff in obj) {
+          return [i, obj[diff]]
+      } else {
+          obj[nums[i]] = i
+      }
+  }
+  return []
+};
+
+/*
+define empty object
+iterate nums array
+define diff variable as target minus current element
+check if object has diff property
+if yes,
+  return array with index and object[diff]
+if not
+  assign key as current element and value as index
+after iteration it's nothing
+return empty array
+*/

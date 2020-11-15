@@ -68,3 +68,32 @@ var nums2 = [9,4,9,8,4]
 // [1,2,2,1]
 // [2]
 intersect(nums1, nums2)
+
+
+/*
+11/14/2020
+time O(n)
+space O(n)
+ */
+var intersect = function(nums1, nums2) {
+  let result = []
+  let obj = {}
+  for (let i = 0; i < nums1.length; i++) {
+      if (nums1[i] in obj) {
+          obj[nums1[i]] += 1
+      } else {
+          obj[nums1[i]] = 1
+      }
+  }
+  for (let i = 0; i < nums2.length; i++) {
+      if (nums2[i] in obj) {
+          result.push(nums2[i])
+          if (obj[nums2[i]] > 1) {
+              obj[nums2[i]] -= 1
+          } else {
+              delete obj[nums2[i]]
+          }
+      }
+  }
+  return result
+};

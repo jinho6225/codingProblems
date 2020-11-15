@@ -50,3 +50,26 @@ var moveZeroes = function (nums) {
 //   }
 //   return nums;
 // };
+
+// 11/14/2020
+/**
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
+ */
+var moveZeroes = function(nums) {
+    
+  let i = 0, j = 0
+  while (i < nums.length) {
+      if(nums[i] === 0) {
+          i++
+      } else {
+          nums[j] = nums[i]
+          nums[i] = 0
+          j++
+          i++
+      }
+  }
+};
+//[1,3,12,0,0]
+//            |
+//        |
