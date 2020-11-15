@@ -86,3 +86,50 @@ var plusOne = function (digits) {
   }
   return digits;
 };
+
+
+// 11/14/2020
+
+/*
+time O(n)
+space O(1)
+ */
+var plusOne = function(digits) {
+  let i = digits.length-1
+  
+  while (i >= 0) {
+      if (digits[i] === 9) {
+          if (i === 0) {
+              digits[i] = 0
+              i--
+          } else {
+              digits[i] = 0
+              i--
+          }
+      } else {
+          digits[i] += 1
+          break;
+      }
+  }
+  if (i < 0) {
+      digits.unshift(1)
+  }
+  return digits
+};
+/*
+iterate digits array from the back
+i will be digits.length-1
+check if it is 9
+  if yes,
+      if i === 0
+          if yes,
+              digits[i] reassign as 0
+              i decreasement
+          if no,
+              digits[i] reassign as 0
+              i decreasement
+      
+  if no,
+      digits[i] += 1
+      break;
+*/
