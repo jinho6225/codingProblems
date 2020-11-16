@@ -52,3 +52,21 @@ var reverseList = function (head) {
   head = prv;
   return head;
 };
+
+
+// 11/15/2020
+var reverseList = function(head) {
+  if (!head) return null
+  if (!head.next) return head
+  let first = head
+  let second = first.next
+  while (second) {
+      let tmp = second.next
+      second.next = first
+      first = second
+      second = tmp
+  }
+  head.next = null
+  head = first
+  return head
+};
