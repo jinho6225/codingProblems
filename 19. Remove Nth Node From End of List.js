@@ -105,3 +105,34 @@ var removeNthFromEnd = function(head, n) {
   }
   return head
 };
+
+
+
+
+var removeNthFromEnd = function(head, n) {
+  let stack = []
+  let cur = head
+  while (cur) {
+      stack.push(cur.val)
+      cur = cur.next
+  }
+
+  stack.splice(stack.length-n, 1)
+  
+  if (stack.length === 0) {
+      head = null
+  } else if (stack.length === 1) {
+      head = new ListNode(stack[0])
+  } else if (stack.length > 1) {
+      let node = new ListNode()
+      let cur = node
+      let i = 0
+      while (i < stack.length) {
+          cur.next = new ListNode(stack[i])
+          cur = cur.next
+          i++
+      }
+      head = node.next
+  }
+  return head
+};
