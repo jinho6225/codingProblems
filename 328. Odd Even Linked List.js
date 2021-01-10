@@ -71,3 +71,23 @@ function oddEvenList(head) {
   }
   return a.next;
 }
+
+//another solution added
+//shorter solution
+var oddEvenList = function(head) {
+  if(!head) return null
+  
+  let cur = head
+  let oddPo = head
+  let evenPO = head.next
+  let evenHead = head.next
+  while (oddPo && oddPo.next && oddPo.next.next) {
+      oddPo.next = oddPo.next.next
+      oddPo = oddPo.next
+      evenPO.next = oddPo.next
+      evenPO = evenPO.next
+  }
+
+  oddPo.next = evenHead
+  return head
+};
