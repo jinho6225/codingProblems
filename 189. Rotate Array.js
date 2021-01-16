@@ -53,3 +53,12 @@ console.log(rotate(input, k));
 
 // [1,2,3]
 // 4
+
+
+//Runtime: 92 ms
+//Memory Usage: 39.6 MB
+var rotate = function (nums, k) {
+  k = k % nums.length    
+  let a = nums.splice(nums.length-k, k)
+  nums.splice(0,0,...a)
+}
