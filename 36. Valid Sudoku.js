@@ -45,6 +45,71 @@ The given board contain only digits 1-9 and the character '.'.
 The given board size is always 9x9.
 */
 
+//----------------------------------------------
+//another solution added
+/**
+ * @param {character[][]} board
+ * @return {boolean}
+ */
+var isValidSudoku = function (board) {
+  for (let i = 0; i < 9; i++) {
+    for (let j = 0; j < 9; j++) {
+      if (i % 3 === 0 && j % 3 === 0) {
+        if (!checkSubSq(board, i, j)) return false;
+      }
+    }
+  }
+  if (!checkRow(board)) return false;
+  if (!checkCol(board)) return false;
+  return true;
+};
+
+function checkSubSq(arr, i, j) {
+  let map = new Map();
+  for (let ii = i; ii < i + 3; ii++) {
+    for (let jj = j; jj < j + 3; jj++) {
+      if (arr[ii][jj] === ".") continue;
+      if (map.has(arr[ii][jj])) {
+        return false;
+      } else {
+        map.set(arr[ii][jj], true);
+      }
+    }
+  }
+  return true;
+}
+
+function checkRow(arr) {
+  for (let i = 0; i < 9; i++) {
+    let map = new Map();
+    for (let j = 0; j < 9; j++) {
+      if (arr[i][j] === ".") continue;
+      if (map.has(arr[i][j])) {
+        return false;
+      } else {
+        map.set(arr[i][j], true);
+      }
+    }
+  }
+  return true;
+}
+
+function checkCol(arr) {
+  for (let i = 0; i < 9; i++) {
+    let map = new Map();
+    for (let j = 0; j < 9; j++) {
+      if (arr[j][i] === ".") continue;
+      if (map.has(arr[j][i])) {
+        return false;
+      } else {
+        map.set(arr[j][i], true);
+      }
+    }
+  }
+  return true;
+}
+//----------------------------------------------
+
 /**
  * @param {character[][]} board
  * @return {boolean}
@@ -75,7 +140,7 @@ var isValidSudoku = function (board) {
     let row = [],
       obj = {};
     for (let k = 0; k < 9; k++) {
-      if (board[i][k] !== '.') {
+      if (board[i][k] !== ".") {
         row.push(board[i][k]);
       }
     }
@@ -86,7 +151,7 @@ var isValidSudoku = function (board) {
     let col = [],
       obj = {};
     for (let k = 0; k < 9; k++) {
-      if (board[k][i] !== '.') {
+      if (board[k][i] !== ".") {
         col.push(board[k][i]);
       }
     }
@@ -95,7 +160,7 @@ var isValidSudoku = function (board) {
   let map = {};
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === '.') {
+      if (board[i][j] === ".") {
         map[String(i + 1) + String(j + 1)] = false;
       } else {
         map[String(i + 1) + String(j + 1)] = board[i][j];
@@ -136,7 +201,7 @@ var isValidSudoku = function (board) {
     let row = [],
       obj = {};
     for (let k = 0; k < 9; k++) {
-      if (board[i][k] !== '.') {
+      if (board[i][k] !== ".") {
         row.push(board[i][k]);
       }
     }
@@ -152,7 +217,7 @@ var isValidSudoku = function (board) {
     let col = [],
       obj = {};
     for (let k = 0; k < 9; k++) {
-      if (board[k][i] !== '.') {
+      if (board[k][i] !== ".") {
         col.push(board[k][i]);
       }
     }
@@ -167,7 +232,7 @@ var isValidSudoku = function (board) {
   let map = {};
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
-      if (board[i][j] === '.') {
+      if (board[i][j] === ".") {
         map[String(i + 1) + String(j + 1)] = false;
       } else {
         map[String(i + 1) + String(j + 1)] = board[i][j];
@@ -214,19 +279,19 @@ var isValidSudoku = function (board) {
     for (let j = 0; j < board[i].length; j++) {
       let index = i.toString() + j.toString();
       if (index[0] === i.toString()) {
-        if (!map['x' + i]) {
-          map['x' + i] = [];
-          if (board[i][j] !== '.') {
-            if (!map['x' + i].includes(board[i][j])) {
-              map['x' + i].push(board[i][j]);
+        if (!map["x" + i]) {
+          map["x" + i] = [];
+          if (board[i][j] !== ".") {
+            if (!map["x" + i].includes(board[i][j])) {
+              map["x" + i].push(board[i][j]);
             } else {
               return false;
             }
           }
         } else {
-          if (board[i][j] !== '.') {
-            if (!map['x' + i].includes(board[i][j])) {
-              map['x' + i].push(board[i][j]);
+          if (board[i][j] !== ".") {
+            if (!map["x" + i].includes(board[i][j])) {
+              map["x" + i].push(board[i][j]);
             } else {
               return false;
             }
@@ -234,19 +299,19 @@ var isValidSudoku = function (board) {
         }
       }
       if (index[1] === j.toString()) {
-        if (!map['y' + j]) {
-          map['y' + j] = [];
-          if (board[i][j] !== '.') {
-            if (!map['y' + j].includes(board[i][j])) {
-              map['y' + j].push(board[i][j]);
+        if (!map["y" + j]) {
+          map["y" + j] = [];
+          if (board[i][j] !== ".") {
+            if (!map["y" + j].includes(board[i][j])) {
+              map["y" + j].push(board[i][j]);
             } else {
               return false;
             }
           }
         } else {
-          if (board[i][j] !== '.') {
-            if (!map['y' + j].includes(board[i][j])) {
-              map['y' + j].push(board[i][j]);
+          if (board[i][j] !== ".") {
+            if (!map["y" + j].includes(board[i][j])) {
+              map["y" + j].push(board[i][j]);
             } else {
               return false;
             }
@@ -255,7 +320,7 @@ var isValidSudoku = function (board) {
       }
 
       if (i < 3 && j < 3) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[33]) {
             map[33] = [];
             if (!map[33].includes(board[i][j])) {
@@ -272,7 +337,7 @@ var isValidSudoku = function (board) {
           }
         }
       } else if (i < 3 && j >= 3 && j < 6) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[36]) {
             map[36] = [];
             if (!map[36].includes(board[i][j])) {
@@ -289,7 +354,7 @@ var isValidSudoku = function (board) {
           }
         }
       } else if (i < 3 && j >= 6 && j < 9) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[39]) {
             map[39] = [];
             if (!map[39].includes(board[i][j])) {
@@ -308,7 +373,7 @@ var isValidSudoku = function (board) {
       }
 
       if (3 <= i && i < 6 && j < 3) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[63]) {
             map[63] = [];
             if (!map[63].includes(board[i][j])) {
@@ -325,7 +390,7 @@ var isValidSudoku = function (board) {
           }
         }
       } else if (3 <= i && i < 6 && j >= 3 && j < 6) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[66]) {
             map[66] = [];
             if (!map[66].includes(board[i][j])) {
@@ -342,7 +407,7 @@ var isValidSudoku = function (board) {
           }
         }
       } else if (3 <= i && i < 6 && j >= 6 && j < 9) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[69]) {
             map[69] = [];
             if (!map[69].includes(board[i][j])) {
@@ -361,7 +426,7 @@ var isValidSudoku = function (board) {
       }
 
       if (6 <= i && i < 9 && j < 3) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[93]) {
             map[93] = [];
             if (!map[93].includes(board[i][j])) {
@@ -378,7 +443,7 @@ var isValidSudoku = function (board) {
           }
         }
       } else if (6 <= i && i < 9 && j >= 3 && j < 6) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[96]) {
             map[96] = [];
             if (!map[96].includes(board[i][j])) {
@@ -395,7 +460,7 @@ var isValidSudoku = function (board) {
           }
         }
       } else if (6 <= i && i < 9 && j >= 6 && j < 9) {
-        if (board[i][j] !== '.') {
+        if (board[i][j] !== ".") {
           if (!map[99]) {
             map[99] = [];
             if (!map[99].includes(board[i][j])) {
