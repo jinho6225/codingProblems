@@ -18,6 +18,17 @@ Your algorithm should run in linear runtime complexity. Could you implement it u
  * @return {number}
  */
 
+//O(n) time complexity, O(1) space
+ var missingNumber = function(nums) {
+  let totalSum = 0
+  for (let i = 0; i <= nums.length; i++) {
+      totalSum += i
+  }
+  let sumOfNums = nums.reduce((acc, cur) => acc + cur, 0)
+  return totalSum - sumOfNums
+};
+
+
 var missingNumber = function (nums) {
   nums.sort((a, b) => a - b);
   if (nums[0] !== 0) {
