@@ -45,3 +45,23 @@ function decodeVariations(S) {
   console.log(result, 'result')
   return count
 }
+
+//Dynamic Programming
+function decodeVariations(S) {
+  let len = S.length
+  let dp = new Array(len)
+  if (S[len-1] === '0') return 0
+  dp[0] = 1
+  for (let i = 1; i < len; i++) {
+    if (S[i] <= 6 && S[i-1] <= 2 && i === 1) {
+      dp[i] = 2
+    } else if (S[i] <= 6 && S[i-1] <= 2) {
+      dp[i] = dp[i-1] + dp[i-2]
+    } else {
+      dp[i] = dp[i-1]
+    }
+  }
+  return dp[len-1]
+}
+
+console.log(decodeVariations('122231131122'))
