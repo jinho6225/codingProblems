@@ -37,4 +37,29 @@ function shortestWordEditPath(source, target, words) {
 	*/
 
 	// your code goes here
+  let seen = new Set([source])
+  let queue = [[source, 0]]
+  while (queue.length) {
+    let [cur, count] = queue.shift()
+    if (cur === target) return count
+    for (let i = 0; i < words.length; i++) {
+      if (compareWord(cur, words[i]) && !seen.has(words[i])) {
+        queue.push([words[i], count+1])
+        seen.add(words[i])
+      }
+    }
+  }
+  return -1
+}
+
+function compareWord(str1, str2) {
+  if (str1.length !== str2.length) return false
+  let count = 0
+  for (let i = 0; i < str1.length; i++) {
+    if (str1[i] !== str2[i]) {
+      if (count === 1) return false
+      count++
+    }    
+  }
+  return true
 }
